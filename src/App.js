@@ -1,37 +1,42 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 import Card from './components/Card';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
-
-const arr = [
-  {
-    title : 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price :  12999,
-    imageUrl : '/img/sneakers/sneaker1.svg',
-  },
-  {
-    title : 'Мужские Кроссовки Nike Air Max 270',
-    price : 12999,
-    imageUrl : '/img/sneakers/sneaker2.svg',
-  },
-  {
-    title : 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price : 8499,
-    imageUrl : '/img/sneakers/sneaker3.svg',
-  },
-  {
-    title : 'Кроссовки Puma X Aka Boku Future Rider',
-    price : 8999,
-    imageUrl : '/img/sneakers/sneaker4.svg',
-  },
-
-]
+import React from 'react';
 
 function App() {
+  const[items, setItems]  = React.useState([]);
+  const[cartItems, setCartItems]  = React.useState([
+
+    {"title":"Мужские Кроссовки Nike Blazer Mid Suede",
+    "price":12999,
+    "imageUrl":"/img/sneakers/sneaker1.svg"},
+
+    {"title":"Мужские Кроссовки Nike Air Max 270",
+    "price":12999,
+    "imageUrl":"/img/sneakers/sneaker2.svg"},]);
+
+  const[cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://632c1b791aabd83739934541.mockapi.io/items')
+    .then((res)=>{
+    return res.json();
+    })
+    .then((json) => {
+      setItems(json);
+    });
+  },[]);
+
+  const onAddToCart = (obj) => {
+    setCartItems(prev => [...prev, obj])
+  };
+
   return (
     <div className="wrapper clear "> 
-    <Drawer />
-    <Header />
+    {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)}/>}
+    <Header onClickCart={()=>setCartOpened(true)}/>
     
     <div className="content p-40">
       <div className="d-flex justify-between align-center mb-40">
@@ -42,13 +47,14 @@ function App() {
         </div>
       </div>
       
-      <div className="d-flex">
-        {arr.map((obj)=>(
+      <div className="d-flex flex-wrap">
+        {items.map((item)=>(
           <Card 
-          title={obj.title}
-          price={obj.price}
-          imageUrl={obj.imageUrl}
-          onClick={()=>console.log(obj)}
+          title={item.title}
+          price={item.price}
+          imageUrl={item.imageUrl}
+          onFavorite={()=>console.log('Добавили в закладки')}
+          onPlus={(obj) => {onAddToCart(obj)}}
           />
         ))}
 
