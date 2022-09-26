@@ -4,8 +4,12 @@ import {Route} from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import AppContext from './context'; 
+
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+
+
 
 function App() {
   const[items, setItems]  = React.useState([]);
@@ -22,6 +26,7 @@ function App() {
     const itemsResponse = await axios.get('https://632c1b791aabd83739934541.mockapi.io/items');
 
     setIsLoading(false);
+    
       setCartItems(cartResponse.data);
       setFavorites(favoritesResponse.data);
       setItems(itemsResponse.data);
@@ -60,8 +65,12 @@ function App() {
   }
 };
 
+const isItemAdded =(id) => {
+  return cartItems.some ((obj) => Number(obj.id)===Number(id));
+}
   return (
-    <div className="wrapper clear "> 
+    <AppContext.Provider value={{items, cartItems, favorites, isItemAdded}}>
+      <div className="wrapper clear "> 
     {cartOpened && <Drawer items={cartItems} onClose={()=>setCartOpened(false)} onRemove={onRemoveItem}/>}
       <Header onClickCart={()=>setCartOpened(true)}/>
 
@@ -81,12 +90,12 @@ function App() {
 
     <Route path="/favorites" exact>
       <Favorites
-        items={favorites} 
         onAddToFavorite={onAddToFavorite}
         />
     </Route> 
     
     </div>
+    </AppContext.Provider>
     
   );
 }
