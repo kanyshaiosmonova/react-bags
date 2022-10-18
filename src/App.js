@@ -21,10 +21,12 @@ function App() {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([axios.get('https://632c1b791aabd83739934541.mockapi.io/cart'), axios.get('https://632c1b791aabd83739934541.mockapi.io/favorites'), axios.get('https://632c1b791aabd83739934541.mockapi.io/items')
-      ]);
-  
-        
+        const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+          axios.get('https://6347d6f6db76843976b373de.mockapi.io/cart'),
+          axios.get('https://6347d6f6db76843976b373de.mockapi.io/favorites'),
+          axios.get('https://6347d6f6db76843976b373de.mockapi.io/items'),
+        ]);
+
         setIsLoading(false);
         setCartItems(cartResponse.data);
         setFavorites(favoritesResponse.data);
@@ -43,60 +45,63 @@ function App() {
       const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
       if (findItem) {
         setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
-        await axios.delete(`https://632c1b791aabd83739934541.mockapi.io/cart/${findItem.id}`);
+        await axios.delete(`https://6347d6f6db76843976b373de.mockapi.io/cart/${findItem.id}`);
       } else {
         setCartItems((prev) => [...prev, obj]);
-        await axios.post('https://632c1b791aabd83739934541.mockapi.io/cart', obj);
+        await axios.post('https://6347d6f6db76843976b373de.mockapi.io/cart', obj);
         setCartItems((prev) =>
-        prev.map((item) => {
-          if (item.parentId === data.parentId) {
-            return {
-              ...item,
-              id: data.id,
-            };
-          } return item;
-         }),
-         );
-         }
-        } catch (error) {
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              };
+            }
+            return item;
+          }),
+        );
+      }
+    } catch (error) {
       alert('Ошибка при добавлении в корзину');
       console.error(error);
     }
   };
   const onRemoveItem = (id) => {
     try {
-      axios.delete(`https://632c1b791aabd83739934541.mockapi.io/cart/${id}`);
+      axios.delete(`https://6347d6f6db76843976b373de.mockapi.io/cart/${id}`);
       setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
     } catch (error) {
       alert('Ошибка при удалении из корзины');
       console.error(error);
     }
   };
-  const onAddToFavorite = async(obj) => {
-    try{
-      if(favorites.find((favObj) => Number(favObj.id) === Number(obj.id))){
-        axios.delete(`https://632c1b791aabd83739934541.mockapi.io/favorites/${obj.id}`);
-        setFavorites((prev) => prev.filter((item)=>Number(item.id) !== Number(obj.id)));
+  const onAddToFavorite = async (obj) => {
+    try {
+      if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
+        axios.delete(`https://6347d6f6db76843976b373de.mockapi.io/favorites/${obj.id}`);
+        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
       } else {
-        const {data} = await axios.post('https://632c1b791aabd83739934541.mockapi.io/favorites', obj);
+        const { data } = await axios.post(
+          'https://6347d6f6db76843976b373de.mockapi.io/favorites',
+          obj,
+        );
         setFavorites((prev) => [...prev, data]);
       }
-    } catch(error) {
-    alert('Не удалось добавить в фавориты');
-    console.error(error);
+    } catch (error) {
+      alert('Не удалось добавить в фавориты');
+      console.error(error);
     }
-};
-  const onChangeSearchInput = (event) => {
-   setSearchValue(event.target.value);
   };
- 
+  const onChangeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  };
 
-const isItemAdded =(id) => {
-  return cartItems.some((obj) => Number(obj.parentId) === Number(id));
-};
+  const isItemAdded = (id) => {
+    return cartItems.some((obj) => Number(obj.parentId) === Number(id));
+  };
   return (
-    <AppContext.Provider 
-      value = {{
+    <AppContext.Provider
+      value={{
         items,
         cartItems,
         favorites,
@@ -106,7 +111,7 @@ const isItemAdded =(id) => {
         setCartOpened,
         setCartItems,
       }}>
-       <div className="wrapper clear">
+      <div className="wrapper clear">
         <Drawer
           items={cartItems}
           onClose={() => setCartOpened(false)}

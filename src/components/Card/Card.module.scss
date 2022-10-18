@@ -20,6 +20,9 @@
     position: absolute;
     cursor: pointer;
   }
+  img {
+    object-fit: cover;
+  }
 
   span {
     font-size: 13px;

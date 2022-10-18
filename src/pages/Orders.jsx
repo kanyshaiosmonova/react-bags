@@ -9,18 +9,17 @@ function Orders() {
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-
   React.useEffect(() => {
-      (async () => {
-       try {
-        const { data } = await axios.get('https://632c1b791aabd83739934541.mockapi.io/orders');
-        setOrders(data.reduce((prev, obj) => [...prev, ...obj.items],[]));
+    (async () => {
+      try {
+        const { data } = await axios.get('https://6347d6f6db76843976b373de.mockapi.io/orders');
+        setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
         setIsLoading(false);
-       } catch (error) {
+      } catch (error) {
         alert('Ошибка при запросе заказов');
         console.error(error);
-       }
-      })();
+      }
+    })();
   }, []);
   return (
     <div className="content p-40">

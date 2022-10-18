@@ -10,7 +10,6 @@ import Unliked from '../../assets/img/heart-unliked.svg';
 import BtnPlus from '../../assets/img/btn-plus.svg';
 import BtnChecked from '../../assets/img/btn-checked.svg';
 
-
 function Card({
   id,
   title,
@@ -25,7 +24,6 @@ function Card({
   const [isFavorite, setIsFavorite] = React.useState(favorited);
   const obj = { id, parentId: id, title, imageUrl, price };
 
-  
   const onClickPlus = () => {
     onPlus(obj);
   };
@@ -58,7 +56,7 @@ function Card({
               <img src={isFavorite ? Liked : Unliked} alt="Unliked" />
             </div>
           )}
-          <img width="100%" height={135} src={`${process.env.PUBLIC_URL}/`+imageUrl}  alt="Sneakers" />
+          <img width="100%" height={135} src={imageUrl} alt="Bags" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
