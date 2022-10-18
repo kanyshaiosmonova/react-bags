@@ -8,7 +8,6 @@ import CartSvg from '../assets/img/cart.svg';
 import HeartSvg from '../assets/img/heart.svg';
 import UserSvg from '../assets/img/user.svg';
 
-
 function Header(props) {
   const { totalPrice } = useCart();
 
@@ -18,7 +17,7 @@ function Header(props) {
         <div className="d-flex align-center">
           <img width={40} height={40} src={LogoPng} alt="Logo" />
           <div>
-            <h3 className="text-uppercase">React Sneakers</h3>
+            <h3 className="text-uppercase">React Bags</h3>
             <p className="opacity-5">Магазин лучших кроссовок</p>
           </div>
         </div>
