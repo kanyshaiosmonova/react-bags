@@ -2,6 +2,8 @@ import React from 'react';
 
 import Card from '../components/Card';
 
+import RemoveBtn from '../assets/img/btn-remove.svg';
+import Search from '../assets/img/search.svg';
 function Home({
   items,
   searchValue,
@@ -31,12 +33,12 @@ function Home({
       <div className="d-flex align-center justify-between mb-40">
         <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все сумки'}</h1>
         <div className="search-block d-flex">
-          <img src="img/search.svg" alt="Search" />
+          <img src={Search} alt="Search" />
           {searchValue && (
             <img
               onClick={() => setSearchValue('')}
               className="clear cu-p"
-              src="img/btn-remove.svg"
+              src={RemoveBtn}
               alt="Clear"
             />
           )}

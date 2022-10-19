@@ -6,6 +6,11 @@ import { useCart } from '../../hooks/useCart';
 
 import styles from './Drawer.module.scss';
 
+import Arrow from '../../assets/img/arrow.svg';
+import EmptyCart from '../../assets/img/emptyCart.svg';
+import CompleteOrder from '../../assets/img/complete-order.svg';
+import RemoveBtn from '../../assets/img/btn-remove.svg';
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function Drawer({ onClose, onRemove, items = [], opened }) {
@@ -17,28 +22,29 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post('https://632c1b791aabd83739934541.mockapi.io/orders', {items:cartItems,
-    });
+      const { data } = await axios.post('https://6347d6f6db76843976b373de.mockapi.io/orders', {
+        items: cartItems,
+      });
       setOrderId(data.id);
       setIsOrderComplete(true);
       setCartItems([]);
 
-    for (let i = 0; i < cartItems.length; i++) {
-      const item = cartItems[i];
-      await axios.delete('https://632c1b791aabd83739934541.mockapi.io/cart'+ item.id);
-      await delay(1000);
-    }
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        await axios.delete('https://6347d6f6db76843976b373de.mockapi.io/cart' + item.id);
+        await delay(1000);
+      }
     } catch (error) {
-      alert('Ошибка при создании заказа :(')
+      alert('Ошибка при создании заказа :(');
     }
     setIsLoading(false);
   };
-  
+
   return (
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div className={styles.drawer}>
         <h2 className="d-flex justify-between mb-30">
-          Корзина <img onClick={onClose} className="cu-p" src="img/btn-remove.svg" alt="Close" />
+          Корзина <img onClick={onClose} className="cu-p" src={RemoveBtn} alt="Close" />
         </h2>
 
         {items.length > 0 ? (
@@ -57,7 +63,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className="removeBtn"
-                    src="img/btn-remove.svg"
+                    src={RemoveBtn}
                     alt="Remove"
                   />
                 </div>
@@ -77,7 +83,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-                Оформить заказ <img src="img/arrow.svg" alt="Arrow" />
+                Оформить заказ <img src={Arrow} alt="Arrow" />
               </button>
             </div>
           </div>
@@ -87,9 +93,9 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
             description={
               isOrderComplete
                 ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
-                : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
+                : 'Добавьте хотя бы одну сумку, чтобы сделать заказ.'
             }
-            image={isOrderComplete ? 'img/complete-order.svg' : 'img/emptyCart.svg'}
+            image={isOrderComplete ? CompleteOrder : EmptyCart}
           />
         )}
       </div>
