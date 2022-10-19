@@ -1,22 +1,27 @@
 {
   "files": {
-    "main.css": "/react-bags/static/css/main.a390c223.css",
-    "main.js": "/react-bags/static/js/main.13b6ede3.js",
+    "main.css": "/react-bags/static/css/main.45c9671b.css",
+    "main.js": "/react-bags/static/js/main.91be6d46.js",
     "static/js/787.dbf37fbb.chunk.js": "/react-bags/static/js/787.dbf37fbb.chunk.js",
     "static/media/heart-unliked.svg": "/react-bags/static/media/heart-unliked.e6532920e1b870b44e38a2b6e59035e9.svg",
     "static/media/heart-liked.svg": "/react-bags/static/media/heart-liked.e982a1ee2152238d704ff6a737d902bc.svg",
+    "static/media/emptyCart.svg": "/react-bags/static/media/emptyCart.7773554632242ce78b1745420c5ed21b.svg",
+    "static/media/complete-order.svg": "/react-bags/static/media/complete-order.31e19e2f797b50a9b96ef652d62358fe.svg",
     "static/media/btn-checked.svg": "/react-bags/static/media/btn-checked.56dcf3d8828d4a90947850f4790d3756.svg",
+    "static/media/btn-remove.svg": "/react-bags/static/media/btn-remove.6c69741a961992826baf6caf28b7d475.svg",
     "static/media/heart.svg": "/react-bags/static/media/heart.0f1a07ae323797b4b7f05a5355068627.svg",
     "static/media/btn-plus.svg": "/react-bags/static/media/btn-plus.45cd181ff8e47a2b774f0032d40727f6.svg",
     "static/media/user.svg": "/react-bags/static/media/user.36e96a5f713a4e2dd879636d47f1babe.svg",
     "index.html": "/react-bags/index.html",
     "static/media/cart.svg": "/react-bags/static/media/cart.63556447ab054ca1194727b8d79d2774.svg",
-    "main.a390c223.css.map": "/react-bags/static/css/main.a390c223.css.map",
-    "main.13b6ede3.js.map": "/react-bags/static/js/main.13b6ede3.js.map",
+    "static/media/search.svg": "/react-bags/static/media/search.b2233f92581b35ee4b69b5d3e54caea2.svg",
+    "static/media/arrow.svg": "/react-bags/static/media/arrow.3fc747c9fc4e47a8cba6d85afb2fba14.svg",
+    "main.45c9671b.css.map": "/react-bags/static/css/main.45c9671b.css.map",
+    "main.91be6d46.js.map": "/react-bags/static/js/main.91be6d46.js.map",
     "787.dbf37fbb.chunk.js.map": "/react-bags/static/js/787.dbf37fbb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a390c223.css",
-    "static/js/main.13b6ede3.js"
+    "static/css/main.45c9671b.css",
+    "static/js/main.91be6d46.js"
   ]
 }
