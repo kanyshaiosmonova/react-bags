@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+## [See the project](https://kanyshaiosmonova.github.io/react-bags/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
